@@ -3,7 +3,7 @@ import { Text, View, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const MainPage = () => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   return (
     <View style={styles.container}>

@@ -6,7 +6,7 @@ import LoginPage from '../pages/login/LoginPage';
 import TodoPage from '../pages/todo/TodoPage';
 
 const StackNavigation = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack: any = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen name='Home' component={MainPage} />

@@ -1,15 +1,25 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { Linking, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigation from './navigation/TabNavigation';
+import Navigation from './navigation/Navigtion';
+import DeepLinking from './navigation/DeepLinking';
 
 function App() {
-  const Stack = createNativeStackNavigator();
+  const Stack: any = createNativeStackNavigator();
+  useEffect(() => {
+    Linking.getInitialURL().then(async deepLinkInitialURL => {
+      if (deepLinkInitialURL) {
+        await DeepLinking.handleInitialNavigate(deepLinkInitialURL);
+      }
+    });
+  }, []);
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
+    <GestureHandlerRootView style={styles.root}>
+      <NavigationContainer ref={Navigation.navigationRef} linking={DeepLinking.linking}>
         <Stack.Navigator>
           <Stack.Screen name={'Tab'} component={TabNavigation} options={{ headerShown: false }} />
         </Stack.Navigator>
@@ -19,21 +29,8 @@ function App() {
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  root: {
+    flex: 1,
   },
 });
 
