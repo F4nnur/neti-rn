@@ -1,10 +1,13 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
+  const { t } = useTranslation();
+
   return (
     <View>
-      <Text>LoginPage</Text>
+      <Text>{t('Login')}</Text>
     </View>
   );
 };

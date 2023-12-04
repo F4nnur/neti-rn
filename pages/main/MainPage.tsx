@@ -1,27 +1,42 @@
-import React from 'react';
-import { Text, View, Pressable, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { observer } from 'mobx-react';
+import { useTranslation } from 'react-i18next';
+import { LangType } from '../../modules/lang/LangType';
+import { useRootStore } from '../../hooks/useRootStore';
 
-const MainPage = () => {
+const MainPage = observer(() => {
   const navigation: any = useNavigation();
+  const { langStore } = useRootStore();
+  const { t } = useTranslation();
+  useEffect(() => {
+    langStore.getLang();
+  }, []);
+
+  const handleChangingLang = async () => {
+    await langStore.changeLang(LangType.RU === langStore.lang ? LangType.EN : LangType.RU);
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.mainText}>Main</Text>
       <View style={styles.buttonsContainer}>
         <Pressable style={styles.mainButton} onPress={() => navigation.navigate('About')}>
-          <Text style={styles.text}>About</Text>
+          <Text style={styles.text}>{t('About')}</Text>
         </Pressable>
         <Pressable style={styles.mainButton} onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.text}>Login</Text>
+          <Text style={styles.text}>{t('Login')}</Text>
         </Pressable>
         <Pressable style={styles.mainButton} onPress={() => navigation.navigate('TodoPage')}>
-          <Text style={styles.text}>TodoPage</Text>
+          <Text style={styles.text}>{t('Todo')}</Text>
+        </Pressable>
+        <Pressable style={styles.mainButton} onPress={handleChangingLang}>
+          <Text style={styles.text}>{t('ChangeLang')}</Text>
         </Pressable>
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

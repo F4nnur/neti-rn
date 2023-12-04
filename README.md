@@ -4,3 +4,6 @@
 
 # 9:
 [Смотреть тут](https://youtu.be/KQUYWv2BugI)
+
+# 10
+[Смотреть тут](https://youtu.be/gmR2KyIMGfU)
