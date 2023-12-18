@@ -10,3 +10,6 @@
 
 # 11
 [Смотреть тут](https://youtu.be/6Q0y6aeKg_8)
+
+# 12
+[Смотреть тут](https://youtu.be/JcqilBiCYeE)

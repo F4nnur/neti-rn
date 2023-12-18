@@ -24,6 +24,8 @@ const useStyles = (colors: IColors) =>
     },
     text: {
       color: colors.textPrimary,
+      fontSize: 70,
+      fontFamily: 'RubikScribble-Regular',
     },
   });
 
